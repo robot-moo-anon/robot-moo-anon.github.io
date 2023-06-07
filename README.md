@@ -1,1 +1,1 @@
-Website for RT-1: Robotics Transformer for Real-World Control at Scale
+Website for "Open-World Object Manipulation using Pre-Trained Vision-Language Models"
