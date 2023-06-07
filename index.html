@@ -1,0 +1,329 @@
+
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>Open-World Object Manipulation using Pre-Trained Vision-Language Models</title>
+
+    <meta name="description" content="Open-World Object Manipulation using Pre-Trained Vision-Language Models">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- <base href="/"> -->
+
+        <!--FACEBOOK-->
+    <meta property="og:image" content="https://robot-moo.github.io/img/moo_thumb.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="960">
+    <meta property="og:image:height" content="540">
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://robot-moo.github.io/"/>
+    <meta property="og:title" content="Open-World Object Manipulation using Pre-Trained Vision-Language Models" />
+    <meta property="og:description" content="Project page for Open-World Object Manipulation using Pre-Trained Vision-Language Models." />
+
+        <!--TWITTER-->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Open-World Object Manipulation using Pre-Trained Vision-Language Models" />
+    <meta name="twitter:description" content="Project page for Open-World Object Manipulation using Pre-Trained Vision-Language Models." />
+    <meta name="twitter:image" content="https://robot-moo.github.io/img/figure1.png" />
+
+
+<!--     <link rel="apple-touch-icon" href="apple-touch-icon.png"> -->
+  <!-- <link rel="icon" type="image/png" href="img/seal_icon.png"> -->
+    <!-- Place favicon.ico in the root directory -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.css">
+    <link rel="stylesheet" href="css/app.css">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.8.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.3/clipboard.min.js"></script>
+    
+    <script src="js/app.js"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-52J0PM8XKV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-52J0PM8XKV');
+</script>
+	
+    <style>
+        .nav-pills {
+          position: relative;
+          display: inline;
+        }
+        .imtip {
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" id="main">
+        <div class="row">
+            <h2 class="col-md-12 text-center">
+                <strong><font size="+6">Open-World Object Manipulation using Pre-Trained Vision-Language Models</font></strong>
+                <!--<small>
+                    CoRL 2021
+                </small>-->
+            </h2>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <ul class="list-inline">
+                <br>
+                <li>Austin Stone*</li> <li>Ted Xiao*</li> <li>Yao Lu*</li> <li>Keerthana Gopalakrishnan</li> <li> Kuang-Huei Lee</li> <br> <li>Quan Vuong </li> <li>Paul Wohlhart</li>  <li> Brianna Zitkovich</li> <li>Fei Xia</li> <li>Chelsea Finn</li> <li>Karol Hausman</li><br>
+                <br>
+			<i> *Denotes equal contribution. </i>
+		<br><br>
+                    <a href="http://g.co/robotics">
+                    <image src="img/rng-logo.png" height="37px"> </a>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="row">
+                <div class="col-md-4 col-md-offset-4 text-center">
+                    <ul class="nav nav-pills nav-justified">
+                        <li>
+                            <a href="assets/moo.pdf">
+                            <image src="img/paper_small.png" height="60px">
+                                <h4><strong>Paper</strong></h4>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://youtu.be/KyvHTbLRovI">
+                            <img src="img/youtube_icon.png" height="60px">
+                                <h4><strong>Video</strong></h4>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+
+
+   
+        
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="text-center">
+                    <div style="position:relative;padding-top:56.25%;">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/KyvHTbLRovI" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+                    </div>
+                </div>
+                <h3>
+                    Abstract
+                </h3>
+                <p class="text-justify">
+                    <i>For robots to follow instructions from people, they must be able to connect the rich semantic information in human vocabulary, e.g. "can you get me the pink stuffed whale?"" to their sensory observations and actions. This brings up a notably difficult challenge for robots: while robot learning approaches allow robots to learn many different behaviors from first-hand experience, it is impractical for robots to have first-hand experiences that span all of this semantic information. We would like a robot's policy to be able to perceive and pick up the pink stuffed whale, even if it has never seen any data interacting with a stuffed whale before. Fortunately, static data on the internet has vast semantic information, and this information is captured in pre-trained vision-language models. In this paper, we study whether we can interface robot policies with these pre-trained models, with the aim of allowing robots to complete instructions involving object categories that the robot has never seen first-hand. We develop a simple approach, which we call Manipulation of Open-World Objects (MOO), which leverages a pre-trained vision-language model to extract object-identifying information from the language command and image, and conditions the robot policy on the current image, the instruction, and the extracted object information. In a variety of experiments on a real mobile manipulator, we find that MOO generalizes zero-shot to a wide range of novel object categories and environments. In addition, we show how MOO generalizes to other, non-language-based input modalities to specify the object of interest such as finger pointing, and how it can be further extended to enable open-world navigation and manipulation.</i>
+                </p>
+            <br>
+            <br>
+             <p style="text-align:center;">
+        	    	<!-- <video id="v0" width="100%" playsinline autoplay muted loop> -->
+                       <image src="img/figure1.png", class="img-responsive">
+                   <!-- </video> -->
+                   We train a language-conditioned policy conditioned on object localizations from a frozen vision-language model (VLM). The policy is trained on demonstrations spanning a diverse set of 106 objects utilizing object-centric representations generated by a VLM, enabling the policy to generalize to novel objects and object localizations produced from modalities unseen during training.
+            </p>
+            </div>
+        </div>
+
+
+	<!-- <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Video
+                </h3>
+                <div class="text-center">
+                    <div style="position:relative;padding-top:56.25%;">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/UuKAp9a6wMs" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+            	<br>
+                <h3>
+                    <p style="text-align:center;">
+                    Motivation
+                    </p>
+                </h3>
+                <p class="text-justify">
+                    A grand milestone in robotics is to develop robots that can effectively perform various physical tasks for individuals in the real world.
+                    The wide-ranging and diverse assortment of practical skills needed for such tasks presents a considerable challenge in creating an all-encompassing robot system.
+                    Although current robotic systems have accomplished impressive feats, these systems are typically rigid and only function in a narrow range of behaviors, often
+                    only those which they were specifically programmed or trained to perform.
+                    
+                    Robotics capabilities can be measured based on two criteria: skills and objects. Skills refer to specific behaviors, such as "<u>pick up</u> X", "<u>move</u> X <u>near</u> Y",
+                    or "<u>take the lid off of</u> X", while objects refer to entities upon which skills operate, such as "pick up the <u>apple</u>", "move the <u>can</u> near the <u>soda dispenser</u>",
+                    "take the lid off the the <u>coffee jar</u>".
+                    <br><br>
+                    In this work, we focus on extending a limited set of skills to an unlimited set of new objects. We demonstrate the ability to execute manipulation skills on objects
+                    that were neither encountered during training nor explicitly programmed into the system in any way. In our work, we use
+                    the interface of natural language, where the robot receives raw text and then executes the skill as described by the text command. This raw text input
+                    can contain descriptions of any object, such as "grasp the pink stuffed elephant."
+                    <br><br>
+                    We have named our system MOO (<b>M</b>anipulation of <b>O</b>pen-World <b>O</b>bjects). In the following sections, we detail our methodology and data collection,
+                    and show that MOO achieves state of the art generalization for "unseen" object categories.
+                </p>
+                <h3>
+                    <p style="text-align:center;">
+                    Method
+                    </p>
+                </h3> 
+                <p class="text-justify">
+                    <p style="text-align:center;">
+                        <image src="img/MooArchitecture.png" class="img-responsive"/>
+                    </p>
+                    Our system employs an open-vocabulary object detector, specifically <a href="https://arxiv.org/abs/2205.06230">OWL-ViT</a>, to link natural language with
+                    objects in a visual image. Given a command for known skill but an unknown object, we break down the command into the skill and object components and provide the text describing the object to OWL-ViT in order
+                    to obtain a bounding box indicator of where the object(s) reside in the robot's RGB camera image. We enhance the general purpose transformer architecture of our previous work, <a href="https://arxiv.org/abs/2212.06817">RT-1</a>
+                    , by incorporating the object locations in the form of a segmentation mask and excluding the text embedding of the objects. RT-1 tends to be brittle when confronted with previously unseen objects because
+                    it has only seen data across a limited set of only 17 objects types during training, and it relied on natural language embeddings to determine which objects to manipulate. Given a previously unseen object, RT-1 will be confronted
+                    with a novel language embedding, making it difficult to generalize. Conversely in MOO, the the segmentation mask representation is identical for both previously seen and novel unseen objects,
+                    which simplifies generalization. A diagram of our architectural modifications to RT-1 is shown above.
+                    <br>
+                    <br>
+                    Like RT-1, our system is learned end-to-end via behavioral cloning from human demonstrations.
+                    We utilize OWL-ViT on our robot demonstration training data to generate genuine detections for conditioning the manipulation policy during the training loop.
+                <br><br>
+                </p>
+                        <h3>
+                            <p style="text-align:center;">
+                            Data
+                            </p>
+                        </h3>
+                    <p class="text-justify">
+                        <p style="text-align:center;">
+                            <image src="img/object_distribution.png" class="img-responsive"/>
+                        </p> 
+                        We found that we needed to greatly expand the training dataset of RT-1 in order to learn generalizable manipulation skills. The original RT-1 dataset included only 16 object types, and
+                        our early attempts struggled to manipulate objects with shapes different from those in the training set. Since most skills require grasping (picking) the object as a component
+                        step, we hypothesized that we could learn most of the information needed to generalize skills to unseen objects by only incorporating more grasping demonstrations
+                        into the RT-1 dataset. We added additional grasping demonstrations across 90 diverse object categories as shown in the figure above. We found that we could transfer knowledge from
+                        these grasping, or "pick" episodes to the existing RT-1 skills ("move X near Y", "place X upside down", etc). 
+                <h3>
+                    <p style="text-align:center;">
+                        Experiments and Results
+                    </p>
+                </h3> 
+                <p class="text-justify">
+                    <p style="text-align:center;">
+                        <image src="img/evaluation_setup.png" class="img-responsive"/>
+                    </p>
+                    Our focus is mainly on the system's ability to generalize and perform skills on objects that it has never encountered during training. To test this, we position our robot beside a tabletop surface that is
+                    covered with a variety of objects and then provide a natural language command to execute a specific skill on a designated object, as depicted above. The majority of the objects
+                    on the table are distractors and should not be involved in the episode, and the target object has not been seen previously. We repeat this process for each skill multiple
+                    times and record the percentage of successful episodes. We compare our results to those of <a href="https://arxiv.org/abs/2212.06817">RT-1</a> and <a href="https://arxiv.org/abs/2210.03094">VIMA</a>
+                    for baseline evaluation.
+                    <p style="text-align:center;">
+                        <image src="img/maintable.png" class="img-responsive"/>
+                    </p>
+
+                    The primary experimental outcomes are presented in the table above. The results reveal that MOO surpasses other methods in performance on both seen and unseen objects.
+                    Notably, MOO demonstrates an impressive success rate of approximately 75% for executing skills on objects that it has never encountered before. Through a series of ablations, we
+                    have established a strong correlation between increased performance and larger dataset sizes and model capacity. Additionally, we have demonstrated that MOO is more robust than
+                    competing methods in managing distracting environments. For further insights, we encourage you to consult our paper.
+                </p>
+        
+                <h3>
+                    <p style="text-align:center;">
+                        Demos
+                    </p>
+                </h3> 
+
+                <video id="v0" width="100%" playsinline autoplay muted loop controls>
+                   <source src="img/montage_all_3x4.mp4" type="video/mp4">
+                </video>
+                <p class="text-justify">
+                    We conduct extensive real-world evaluations of MOO peformance on 13 seen objeects and 8 unseen objects, where we find that MOO is able to generalize to novel objects. In addition, we ablate MOO's model capacity and training distribution, and find that high-capactiy models with large amounts of diverse data are crucial to strong performance.
+                </p>
+
+                <video id="v0" width="100%" playsinline loop controls>
+                    <source src="img/pointing_demo_compressed.mp4" type="video/mp4">
+                </video>
+                <p class="text-justify">
+                    We explore using a generative VLM like <a href="https://ai.googleblog.com/2022/09/pali-scaling-language-image-learning-in.html">PaLI</a> to generate an image caption which is then provided to OWL-ViT to generate a mask usable by MOO. For example, PaLI can interpret human intent by identifying which object a person is pointing to, which MOO then successfully manipulates.
+                </p>
+
+
+                <video id="v0" width="100%" playsinline loop controls>
+                    <source src="img/image_demo_compressed.mp4" type="video/mp4">
+                </video>
+                <p class="text-justify">
+                   OWL-ViT need not be conditioned on a textual query; it can also be prompted with an image query, such as a stock image downloaded from the internet. Image-based qurrying is especially relevant when objects are hard to describe in words, such as when there are many visually similar objects in a scene. In these cases, it may be most effective to directly provide an image of the target of interest.
+                </p>
+
+	    	<video id="v0" width="100%" playsinline loop controls>
+                    <source src="img/clicking_demo_compressed.mp4" type="video/mp4">
+                </video>
+                <p class="text-justify">
+                    In cases where OWL-ViT or other VLMs fail to produce an accurate detection, we experiment with a GUI where humans can directly input the ground-truth mask provided to the policy. This is especially useful in cases with clutter or repeated objects, where textual or visual queries may be quite difficult even for state-of-the-art VLMs.
+                </p>
+
+
+                <div class="text-center">
+                    <div style="position:relative;padding-top:56.25%;">
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/tOx-lGRjN7Q" allowfullscreen="" style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+                    </div>
+                </div>
+
+                <p class="text-justify">
+                   Open-world manipulation can be integrated with open-vocabulary object goal navigation. Coincidentally, there is an open-vocabulary object navigation algorithm
+                   called <a href="https://arxiv.org/abs/2203.10421">Clip on Wheels (CoW)</a>; we implement a variant of CoW and combine it with MOO, which we refer to as CoW-MOO. CoW handles open-vocabulary navigation to an object of interest, and MOO continues with manipulating the target object.
+                </p>
+
+
+                <h3>
+                    <p style="text-align:center;">
+                    Citation
+                    </p>
+                </h3>
+                <div class="form-group col-md-10 col-md-offset-1">
+                    <textarea id="bibtex" class="form-control" readonly>
+@inproceedings{moo2023arxiv,
+    title={Open-World Object Manipulation using Pre-Trained Vision-Language Model},
+    author={Austin Stone and Ted Xiao and Yao Lu and Keerthana Gopalakrishnan and Kuang-Huei Lee and Quan Vuong and Paul Wohlhart and Brianna Zitkovich and Fei Xia and Chelsea Finn and Karol Hausman}
+    booktitle={arXiv preprint},
+    year={2023}
+}</textarea>
+                </div>
+
+                <div class="row">
+                    <h3>
+                        <p style="text-align:center;">
+                        Acknowledgements
+                        </p>
+                    </h3>
+                    <p>The authors would like to thank Alex Irpan, Brian Ichter, Clayton Tan, Grecia Salazar, Kanishka Rao, Nikhil Joshi, Noah Brown and the greater Robotics @ Google team for their feedback and contributions.
+                    </p>
+                    </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <p class="text-justify">
+                    <br><br>
+                The website template was taken from <a href="http://jonbarron.info/">Jon Barron</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
